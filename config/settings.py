@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'users',
     'course',
     'lessons',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -81,8 +82,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'course_platform',
+        'USER': 'postgres',
+        'PASSWORD': 'qwerty',
+        'HOST': '127.0.0.1',  # Адрес, на котором развернут сервер БД
+        'PORT': 5432,
     }
 }
 

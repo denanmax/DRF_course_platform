@@ -13,7 +13,7 @@ class Lesson(models.Model):
     preview = models.ImageField(upload_to='lesson', verbose_name='Превью', blank=True, null=True)
     description = models.TextField(verbose_name='Описание')
     url = models.URLField(max_length=150, verbose_name='Ссылка', default='www.piton.org')
-    course = models.ForeignKey("course.Course", on_delete=models.SET_NULL, verbose_name='Course', **NULLABLE,
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, verbose_name='Course', **NULLABLE,
                                related_name='lesson')
 
     def __str__(self):
