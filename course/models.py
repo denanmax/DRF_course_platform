@@ -2,6 +2,8 @@
 from django.conf import settings
 from django.db import models
 
+from users.models import User
+
 
 class Course(models.Model):
     name = models.CharField(max_length=30, verbose_name='Название')
@@ -17,3 +19,9 @@ class Course(models.Model):
     class Meta:
         verbose_name = 'Курс'
         verbose_name_plural = 'Курсы'
+
+
+class Subscriptions(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    is_subscribed = models.BooleanField(default=False, verbose_name='Подписан')
