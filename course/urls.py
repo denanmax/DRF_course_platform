@@ -3,7 +3,7 @@ from django.urls import path
 from course.apps import CourseConfig
 from rest_framework.routers import DefaultRouter
 
-from course.views import CourseViewSet
+from course.views import CourseViewSet, SubscriptionsViewSet
 from lessons.views import LessonCreateAPIView, LessonListAPIView, LessonRetrieveAPIView, LessonUpdateAPIView, \
     LessonDestroyAPIView
 from payment.views import PaymentViewSet
@@ -13,6 +13,7 @@ app_name = CourseConfig.name
 router = DefaultRouter()
 router.register(r'course', CourseViewSet, basename='course')
 router.register(r'payment', PaymentViewSet, basename='payment')
+router.register(r'subscriptions', SubscriptionsViewSet, basename='subscriptions')
 
 urlpatterns =[
     path('lesson/create/', LessonCreateAPIView.as_view(), name='lesson-create'),

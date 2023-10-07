@@ -9,6 +9,7 @@ packages = [{include = "drf_course_platform"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 django-filter = "^23.3"
+coverage = "^7.3.2"
 
 
 [build-system]

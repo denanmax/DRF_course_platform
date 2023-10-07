@@ -2,8 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
+from course.paginators import ViewsPaginator
 from course.permissions import IsNotModerator, IsOwnerOrModerator
 from lessons.models import Lesson
 from lessons.serliazers import LessonSerializer
@@ -20,14 +21,15 @@ class LessonCreateAPIView(generics.CreateAPIView):
 
 
 class LessonListAPIView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated, ]
+    permission_classes = [AllowAny]
     serializer_class = LessonSerializer
+    pagination_class = ViewsPaginator
     queryset = Lesson.objects.all()
 
-    def get_queryset(self):
-        if self.request.user.groups.filter(name='Moderator').exists():
-            return Lesson.objects.all()
-        return Lesson.objects.filter(owner=self.request.user)
+    # def get_queryset(self):
+    #     if self.request.user.groups.filter(name='Moderator').exists() or self.request.user.is_superuser:
+    #         return Lesson.objects.all()
+    #     return Lesson.objects.filter(owner=self.request.user)
 
 
 class LessonRetrieveAPIView(generics.RetrieveAPIView):

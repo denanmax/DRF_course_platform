@@ -13,7 +13,7 @@ class Lesson(models.Model):
     name = models.CharField(max_length=30, verbose_name='Название')
     preview = models.ImageField(upload_to='lesson', verbose_name='Превью', blank=True, null=True)
     description = models.TextField(verbose_name='Описание')
-    url = models.URLField(max_length=150, verbose_name='Ссылка', default='www.piton.org')
+    url = models.URLField(max_length=150, verbose_name='Ссылка', default='https://www.youtube.com/')
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, verbose_name='Course', **NULLABLE,
                                related_name='lesson')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True,
