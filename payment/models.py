@@ -20,10 +20,6 @@ class Payment(models.Model):
     payment_amount = models.PositiveIntegerField(verbose_name='сумма оплаты')
     payment_type = models.CharField(choices=PAYMENT_TYPE, verbose_name='тип оплаты', max_length=10)
 
-    stripe_payment_id = models.CharField(max_length=255, verbose_name='id платежа stripe', **NULLABLE,)
-    status = models.CharField(max_length=10, verbose_name='статус платежа', default='open',)
-    stripe_payment_url = models.TextField(verbose_name='id платежа stripe', **NULLABLE, )
-
     def __str__(self):
         return f'{self.user} {self.payment_type} {self.date_payment}'
 

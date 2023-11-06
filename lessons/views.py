@@ -9,7 +9,6 @@ from course.permissions import IsNotModerator, IsOwnerOrModerator
 from lessons.models import Lesson
 from lessons.serliazers import LessonSerializer, LessonPaymentSerializer
 from payment.models import Payment
-from course.tasks import send_course_update
 
 
 class LessonCreateAPIView(generics.CreateAPIView):
@@ -20,8 +19,6 @@ class LessonCreateAPIView(generics.CreateAPIView):
         new_lesson = serializer.save()
         new_lesson.owner = self.request.user
         new_lesson.save()
-        if new_lesson:
-            send_course_update.delay(new_lesson.course.id)
 
 
 class LessonListAPIView(generics.ListAPIView):
@@ -51,9 +48,6 @@ class LessonUpdateAPIView(generics.UpdateAPIView):
         new_lesson = serializer.save()
         new_lesson.owner = self.request.user
         new_lesson.save()
-        if new_lesson:
-            send_course_update.delay(new_lesson.course.id)
-
 
 class LessonDestroyAPIView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated, IsOwnerOrModerator, IsNotModerator]

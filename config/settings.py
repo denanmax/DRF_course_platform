@@ -160,3 +160,12 @@ PAY_API_URL = "https://api.stripe.com/"
 
 CELERY_BROKER_URL = 'redis://redis:6379/'
 CELERY_RESULT_BACKEND = 'redis://redis:6379/'
+
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'd3nizmaximov@yandex.ru'
+EMAIL_HOST_PASSWORD = 'wseenmbxjhfjrnus'
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+
