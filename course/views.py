@@ -19,7 +19,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.user.groups.filter(name='Moderator').exists():
             return Course.objects.all()
-        return Course.objects.filter(owner=self.request.user)
+        return Course.objects.filter(owner=self.request.user.id)
 
     def perform_create(self, serializer):
         new_course = serializer.save()

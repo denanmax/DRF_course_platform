@@ -10,6 +10,12 @@ packages = [{include = "drf_course_platform"}]
 python = "^3.11"
 django-filter = "^23.3"
 coverage = "^7.3.2"
+drf-yasg = "^1.21.7"
+requests = "^2.31.0"
+stripe = "^6.7.0"
+celery = "^5.3.4"
+redis = "^5.0.1"
+django-celery-beat = "^2.5.0"
 
 
 [build-system]
